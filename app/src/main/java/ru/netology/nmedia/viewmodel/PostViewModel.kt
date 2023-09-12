@@ -90,10 +90,10 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
     fun likeById(id: Long) = viewModelScope.launch {
         try {
             val posts = data.value?.posts.orEmpty()
+
             repository.likeById(id, likedByMe = true)
-//            data.value = data.value?.copy(posts = posts.map {
-//                post-> if (post.id == id)post else post
-//            })
+
+
         }catch (e:Exception){
             _dataState.value = FeedModelState(error = true)
         }

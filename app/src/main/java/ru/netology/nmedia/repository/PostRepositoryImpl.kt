@@ -64,9 +64,10 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
 
     override suspend fun likeById(id: Long, likedByMe: Boolean) {
         when (likedByMe) {
-            true -> deleteLike(id)
-            else -> liked(id)
+            true -> liked(id)
+            else -> deleteLike(id)
         }
+
     }
 
    suspend fun liked (id:Long){
