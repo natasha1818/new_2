@@ -91,8 +91,8 @@ class PostViewModel(application: Application) : AndroidViewModel(application) {
         try {
             val posts = data.value?.posts.orEmpty()
 
-            repository.likeById(id, likedByMe = true)
 
+            repository.likeById(id,likedByMe = true)
 
         }catch (e:Exception){
             _dataState.value = FeedModelState(error = true)

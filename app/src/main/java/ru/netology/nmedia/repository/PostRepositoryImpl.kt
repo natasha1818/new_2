@@ -48,9 +48,12 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
         }
     }
 
+
+
     @SuppressLint("SuspiciousIndentation")
     override suspend fun removeById(id: Long) {
-        try{
+               try{
+            dao.removeById(id)
         val response = PostsApi.service.removeById(id)
             if (!response.isSuccessful) {
                 throw ApiError(response.code(), response.message())
@@ -71,7 +74,9 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
     }
 
    suspend fun liked (id:Long){
+
        try {
+           dao.likeById(id)
            val response = PostsApi.service.likeById(id)
            if (!response.isSuccessful){
                throw ApiError(response.code(), response.message())
@@ -85,7 +90,9 @@ class PostRepositoryImpl(private val dao: PostDao) : PostRepository {
    }
 }
     suspend fun deleteLike(id:Long){
+
         try {
+            dao.likeById(id)
             val response = PostsApi.service.dislikeById(id)
             if (!response.isSuccessful){
                 throw ApiError(response.code(), response.message())
